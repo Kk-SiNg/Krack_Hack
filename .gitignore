@@ -1,0 +1,15 @@
+# Model weights (too large for GitHub)
+code-commenter-lora/
+code-commenter-output/
+*.zip
+
+# Data
+checkpoint.json
+__pycache__/
+*.pyc
+
+# OS
+.DS_Store
+Thumbs.db
+
+# #model weights (too large for GitHub)
