@@ -1,0 +1,402 @@
+[
+  {
+    "code_with_comments": "#include <bits/stdc++.h>\nusing namespace std;\nint num_to_bits[16] = { 0, 1, 1, 2, 1, 2, 2, 3,\n                        1, 2, 2, 3, 2, 3, 3, 4 };\n/* Recursively get nibble of a given number\nand map them in the array */\nunsigned int countSetBitsRec(unsigned int num)\n{\n    int nibble = 0;\n    if (0 == num)\n        return num_to_bits[0];\n    // Find last nibble\n    nibble = num & 0xf;\n    // Use pre-stored values to find count\n    // in last nibble plus recursively add\n    // remaining nibbles.\n    return num_to_bits[nibble] + countSetBitsRec(num >> 4);\n}\nint main()\n{\n    int num = 9;\n    cout << countSetBitsRec(num);\n    return 0;\n}",
+    "code_without_comments": "#include <bits/stdc++.h>\nusing namespace std;\nint num_to_bits[16] = { 0, 1, 1, 2, 1, 2, 2, 3,\n                        1, 2, 2, 3, 2, 3, 3, 4 };\n\nunsigned int countSetBitsRec(unsigned int num)\n{\n    int nibble = 0;\n    if (0 == num)\n        return num_to_bits[0];\n\n    nibble = num & 0xf;\n\n\n\n    return num_to_bits[nibble] + countSetBitsRec(num >> 4);\n}\nint main()\n{\n    int num = 9;\n    cout << countSetBitsRec(num);\n    return 0;\n}",
+    "has_comments": true,
+    "language": "cpp",
+    "source_url": "https://www.geeksforgeeks.org/count-set-bits-in-an-integer/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "#include <stdio.h>\nint num_to_bits[16] = { 0, 1, 1, 2, 1, 2, 2, 3,\n                        1, 2, 2, 3, 2, 3, 3, 4 };\n/* Recursively get nibble of a given number\n  and map them in the array  */\nunsigned int countSetBitsRec(unsigned int num)\n{\n    int nibble = 0;\n    if (0 == num)\n        return num_to_bits[0];\n    // Find last nibble\n    nibble = num & 0xf;\n    // Use pre-stored values to find count\n    // in last nibble plus recursively add\n    // remaining nibbles.\n    return num_to_bits[nibble] + countSetBitsRec(num >> 4);\n}\nint main()\n{\n    int num = 9;\n    printf(\"%d\\n\", countSetBitsRec(num));\n}",
+    "code_without_comments": "#include <stdio.h>\nint num_to_bits[16] = { 0, 1, 1, 2, 1, 2, 2, 3,\n                        1, 2, 2, 3, 2, 3, 3, 4 };\n\nunsigned int countSetBitsRec(unsigned int num)\n{\n    int nibble = 0;\n    if (0 == num)\n        return num_to_bits[0];\n\n    nibble = num & 0xf;\n\n\n\n    return num_to_bits[nibble] + countSetBitsRec(num >> 4);\n}\nint main()\n{\n    int num = 9;\n    printf(\"%d\\n\", countSetBitsRec(num));\n}",
+    "has_comments": true,
+    "language": "cpp",
+    "source_url": "https://www.geeksforgeeks.org/count-set-bits-in-an-integer/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "num_to_bits =[0, 1, 1, 2, 1, 2, 2, 3, 1, 2, 2, 3, 2, 3, 3, 4];\n# Recursively get nibble of a given number\n# and map them in the array\ndef countSetBitsRec(num):\n    nibble = 0;\n    if(0 == num):\n        return num_to_bits[0];\n    # Find last nibble\n    nibble = num & 0xf;\n    # Use pre-stored values to find count\n    # in last nibble plus recursively add\n    # remaining nibbles.\n    return num_to_bits[nibble] + countSetBitsRec(num >> 4);\n# Driver code\nnum = 9;\nprint(countSetBitsRec(num));\n# this code is contributed by mits",
+    "code_without_comments": "num_to_bits =[0, 1, 1, 2, 1, 2, 2, 3, 1, 2, 2, 3, 2, 3, 3, 4];\n\n\ndef countSetBitsRec(num):\n    nibble = 0;\n    if(0 == num):\n        return num_to_bits[0];\n\n    nibble = num & 0xf;\n\n\n\n    return num_to_bits[nibble] + countSetBitsRec(num >> 4);\n\nnum = 9;\nprint(countSetBitsRec(num));\n",
+    "has_comments": true,
+    "language": "python",
+    "source_url": "https://www.geeksforgeeks.org/count-set-bits-in-an-integer/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "#include <bits/stdc++.h>\nusing namespace std;\n// Function to find largest power of 2 such that\n// pow(2,k) <= N\nint findk(int n)\n{ int k; int i=0; int val=pow(2,i);\n while(val<=n)\n {\n     k=i; i++;\n    val=pow(2,i);\n }\n  return k;\n}\n// Function to count set bits in a number\nint countSetBits(int N)\n{\n    int count = 0;\n    int k=findk(N);\n    int val , x;\n    // Iterating from largest power to 2 such that\n    // pow(2,k) to 0\n    for (int i = k; i >= 0; i--)\n    {\n        val=pow(2,i);\n        x=val & N; //x will store Bitwise AND of N & val\n       if(x > 0)\n       { count++;\n       }\n    }\n    return count;//return count of set bits\n}\nint main()\n{\n    int N = 9;\n    // Function call\n    cout << countSetBits(N) << endl;\n    return 0;\n}",
+    "code_without_comments": "#include <bits/stdc++.h>\nusing namespace std;\n\n\nint findk(int n)\n{ int k; int i=0; int val=pow(2,i);\n while(val<=n)\n {\n     k=i; i++;\n    val=pow(2,i);\n }\n  return k;\n}\n\nint countSetBits(int N)\n{\n    int count = 0;\n    int k=findk(N);\n    int val , x;\n\n\n    for (int i = k; i >= 0; i--)\n    {\n        val=pow(2,i);\n        x=val & N;\n       if(x > 0)\n       { count++;\n       }\n    }\n    return count;\n}\nint main()\n{\n    int N = 9;\n\n    cout << countSetBits(N) << endl;\n    return 0;\n}",
+    "has_comments": true,
+    "language": "cpp",
+    "source_url": "https://www.geeksforgeeks.org/count-set-bits-in-an-integer/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "import math\n# Function to find largest\n# power of 2 such that\n# pow(2,k) <= N\ndef findk(n):\n    i = 0\n    val = math.pow(2, i)\n    while val <= n:\n        k = i\n        i += 1\n        val = math.pow(2, i)\n    return k\n# Function to count set bits in a number\ndef countSetBits(N):\n    count = 0\n    k = findk(N)\n    for i in range(k, -1, -1):\n        val = int(math.pow(2, i))\n        x = val & N\n        # x will store Bitwise AND of N & val\n        if x > 0:\n            count += 1\n    return count\nif __name__ == '__main__':\n    N = 9\n    print(countSetBits(N))",
+    "code_without_comments": "import math\n\n\n\ndef findk(n):\n    i = 0\n    val = math.pow(2, i)\n    while val <= n:\n        k = i\n        i += 1\n        val = math.pow(2, i)\n    return k\n\ndef countSetBits(N):\n    count = 0\n    k = findk(N)\n    for i in range(k, -1, -1):\n        val = int(math.pow(2, i))\n        x = val & N\n\n        if x > 0:\n            count += 1\n    return count\nif __name__ == '__main__':\n    N = 9\n    print(countSetBits(N))",
+    "has_comments": true,
+    "language": "python",
+    "source_url": "https://www.geeksforgeeks.org/count-set-bits-in-an-integer/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "#include <iostream>\n#include <vector>\nusing namespace std;\nint getSingle(vector<int>& arr) {\n    int n = arr.size();\n    // Iterate over every element\n    for (int i = 0; i < n; i++) {\n        // Initialize count to 0\n        int count = 0;\n        for (int j = 0; j < n; j++) {\n            // Count the frequency of the element\n            if (arr[i] == arr[j]) {\n                count++;\n            }\n        }\n        // If the frequency of the element is one\n        if (count == 1) {\n            return arr[i];\n        }\n    }\n    // If no element exists at most once\n    return -1;\n}\nint main() {\n    vector<int> arr = {1, 10, 1, 1};\n    cout << getSingle(arr) << endl;\n    return 0;\n}",
+    "code_without_comments": "#include <iostream>\n#include <vector>\nusing namespace std;\nint getSingle(vector<int>& arr) {\n    int n = arr.size();\n\n    for (int i = 0; i < n; i++) {\n\n        int count = 0;\n        for (int j = 0; j < n; j++) {\n\n            if (arr[i] == arr[j]) {\n                count++;\n            }\n        }\n\n        if (count == 1) {\n            return arr[i];\n        }\n    }\n\n    return -1;\n}\nint main() {\n    vector<int> arr = {1, 10, 1, 1};\n    cout << getSingle(arr) << endl;\n    return 0;\n}",
+    "has_comments": true,
+    "language": "cpp",
+    "source_url": "https://www.geeksforgeeks.org/find-the-element-that-appears-once/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "def getSingle(arr):\n    n = len(arr)\n    # Iterate over every element\n    for i in range(n):\n        # Initialize count to 0\n        count = 0\n        for j in range(n):\n            # Count the frequency of the element\n            if arr[i] == arr[j]:\n                count += 1\n        # If the frequency of the element is one\n        if count == 1:\n            return arr[i]\n    # If no element exists at most once\n    return -1\nif __name__ == \"__main__\":\n    arr = [1, 10, 1, 1]\n    print(getSingle(arr))",
+    "code_without_comments": "def getSingle(arr):\n    n = len(arr)\n\n    for i in range(n):\n\n        count = 0\n        for j in range(n):\n\n            if arr[i] == arr[j]:\n                count += 1\n\n        if count == 1:\n            return arr[i]\n\n    return -1\nif __name__ == \"__main__\":\n    arr = [1, 10, 1, 1]\n    print(getSingle(arr))",
+    "has_comments": true,
+    "language": "python",
+    "source_url": "https://www.geeksforgeeks.org/find-the-element-that-appears-once/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "#include <iostream>\n#include <vector>\n#include <unordered_map>\nusing namespace std;\n// Function to find the element that appears only once\nint getSingle(vector<int>& arr) {\n    // To store frequency of each element\n    unordered_map<int, int> freq;\n    // Count the frequency of each number in the array\n    for (int num : arr) {\n        freq[num]++;\n    }\n    // Find the number that occurs only once\n    for (auto it : freq) {\n        if (it.second == 1)\n            return it.first;\n    }\n    // Return 0 if no unique element is found\n    return 0;\n}\nint main() {\n    vector<int> arr = {1, 10, 1, 1};\n    // Output the single occurrence element\n    cout << getSingle(arr) << endl;\n    return 0;\n}",
+    "code_without_comments": "#include <iostream>\n#include <vector>\n#include <unordered_map>\nusing namespace std;\n\nint getSingle(vector<int>& arr) {\n\n    unordered_map<int, int> freq;\n\n    for (int num : arr) {\n        freq[num]++;\n    }\n\n    for (auto it : freq) {\n        if (it.second == 1)\n            return it.first;\n    }\n\n    return 0;\n}\nint main() {\n    vector<int> arr = {1, 10, 1, 1};\n\n    cout << getSingle(arr) << endl;\n    return 0;\n}",
+    "has_comments": true,
+    "language": "cpp",
+    "source_url": "https://www.geeksforgeeks.org/find-the-element-that-appears-once/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "def getSingle(arr):\n    mp = {}\n    # Count frequency of each element\n    for it in arr:\n        if it in mp:\n            mp[it] += 1\n        else:\n            mp[it] = 1\n    # Return the element that appears only once\n    for key in mp:\n        if mp[key] == 1:\n            return key\n    return 0\nif __name__ == \"__main__\":\n    arr = [1, 10, 1, 1]\n    print(getSingle(arr))",
+    "code_without_comments": "def getSingle(arr):\n    mp = {}\n\n    for it in arr:\n        if it in mp:\n            mp[it] += 1\n        else:\n            mp[it] = 1\n\n    for key in mp:\n        if mp[key] == 1:\n            return key\n    return 0\nif __name__ == \"__main__\":\n    arr = [1, 10, 1, 1]\n    print(getSingle(arr))",
+    "has_comments": true,
+    "language": "python",
+    "source_url": "https://www.geeksforgeeks.org/find-the-element-that-appears-once/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "#include <iostream>\n#include <vector>\n#include <unordered_set>\nusing namespace std;\nint getSingle(vector<int>& arr) {\n    unordered_set<int> uniqueElements;\n    int totalSum = 0;\n    // Calculate the sum of all elements and collect unique ones\n    for (int num : arr) {\n        totalSum += num;\n        uniqueElements.insert(num);\n    }\n    int uniqueSum = 0;\n    // Sum of all unique elements\n    for (int num : uniqueElements) {\n        uniqueSum += num;\n    }\n    //  3 * (sum of unique elements) - (sum of all elements)\n    //  gives twice the unique element that appears once.\n    //  So we divide by 2 to get the actual element.\n    int result = (3 * uniqueSum - totalSum) / 2;\n    return result;\n}\nint main() {\n    vector<int> arr = {1, 10, 1, 1};\n    // Output the single occurrence element\n    cout << getSingle(arr) << endl;\n    return 0;\n}",
+    "code_without_comments": "#include <iostream>\n#include <vector>\n#include <unordered_set>\nusing namespace std;\nint getSingle(vector<int>& arr) {\n    unordered_set<int> uniqueElements;\n    int totalSum = 0;\n\n    for (int num : arr) {\n        totalSum += num;\n        uniqueElements.insert(num);\n    }\n    int uniqueSum = 0;\n\n    for (int num : uniqueElements) {\n        uniqueSum += num;\n    }\n\n\n\n    int result = (3 * uniqueSum - totalSum) / 2;\n    return result;\n}\nint main() {\n    vector<int> arr = {1, 10, 1, 1};\n\n    cout << getSingle(arr) << endl;\n    return 0;\n}",
+    "has_comments": true,
+    "language": "cpp",
+    "source_url": "https://www.geeksforgeeks.org/find-the-element-that-appears-once/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "def getSingle(arr):\n    unique_elements = set()\n    total_sum = 0\n    # Calculate total sum and collect unique elements\n    for num in arr:\n        total_sum += num\n        unique_elements.add(num)\n    unique_sum = sum(unique_elements)\n    # 3 * (sum of unique elements) - (sum of all elements) = 2 * unique one\n    result = (3 * unique_sum - total_sum) // 2\n    return result\n# Driver code\nif __name__ == \"__main__\":\n    arr = [1, 10, 1, 1]\n    print(getSingle(arr))",
+    "code_without_comments": "def getSingle(arr):\n    unique_elements = set()\n    total_sum = 0\n\n    for num in arr:\n        total_sum += num\n        unique_elements.add(num)\n    unique_sum = sum(unique_elements)\n\n    result = (3 * unique_sum - total_sum) // 2\n    return result\n\nif __name__ == \"__main__\":\n    arr = [1, 10, 1, 1]\n    print(getSingle(arr))",
+    "has_comments": true,
+    "language": "python",
+    "source_url": "https://www.geeksforgeeks.org/find-the-element-that-appears-once/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "#include <iostream>\n#include <vector>\nusing namespace std;\nint getSingle(vector<int>& arr) {\n    int result = 0, x, sum;\n    // Iterate through every bit (from 0 to 31)\n    for (int i = 0; i < 32; i++) {\n        sum = 0;\n         // Get the mask for the i-th bit position\n        x = (1 << i);\n        // Iterate over the array and count the number of set\n        // bits at position i\n        for (int j = 0; j < arr.size(); j++) {\n            // Check if the i-th bit is set in arr[j]\n            if (arr[j] & x) {\n                sum++;\n            }\n        }\n        // If sum is not a multiple of 3, it's part of the unique element\n        if ((sum % 3) != 0) {\n            result |= x;\n        }\n    }\n    return result;\n}\nint main() {\n    vector<int> arr = {1, 10, 1, 1};\n    cout << getSingle(arr) << endl;\n    return 0;\n}",
+    "code_without_comments": "#include <iostream>\n#include <vector>\nusing namespace std;\nint getSingle(vector<int>& arr) {\n    int result = 0, x, sum;\n\n    for (int i = 0; i < 32; i++) {\n        sum = 0;\n\n        x = (1 << i);\n\n\n        for (int j = 0; j < arr.size(); j++) {\n\n            if (arr[j] & x) {\n                sum++;\n            }\n        }\n\n        if ((sum % 3) != 0) {\n            result |= x;\n        }\n    }\n    return result;\n}\nint main() {\n    vector<int> arr = {1, 10, 1, 1};\n    cout << getSingle(arr) << endl;\n    return 0;\n}",
+    "has_comments": true,
+    "language": "cpp",
+    "source_url": "https://www.geeksforgeeks.org/find-the-element-that-appears-once/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "def getSingle(arr):\n    result = 0\n    # Iterate through every bit (from 0 to 31)\n    for i in range(32):\n        sum = 0\n        # Get the mask for the i-th bit position\n        x = (1 << i)\n        # Iterate over the array and count the number of set bits\n        # at position i\n        for j in arr:\n            # Check if the i-th bit is set in j\n            if j & x:\n                sum += 1\n        # If sum is not a multiple of 3, it's part of the unique element\n        if sum % 3 != 0:\n            result |= x\n    return result\narr = [1, 10, 1, 1]\nprint(getSingle(arr))",
+    "code_without_comments": "def getSingle(arr):\n    result = 0\n\n    for i in range(32):\n        sum = 0\n\n        x = (1 << i)\n\n\n        for j in arr:\n\n            if j & x:\n                sum += 1\n        # If sum is not a multiple of 3, it's part of the unique element\n        if sum % 3 != 0:\n            result |= x\n    return result\narr = [1, 10, 1, 1]\nprint(getSingle(arr))",
+    "has_comments": true,
+    "language": "python",
+    "source_url": "https://www.geeksforgeeks.org/find-the-element-that-appears-once/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "#include <iostream>\n#include <vector>\nusing namespace std;\nint getSingle(vector<int>& arr) {\n    int ones = 0, twos = 0, mask;\n    for (int num : arr) {\n        // Update 'twos' with bits that are set in both 'ones' and\n        // current number. These are bits that have appeared twice so far.\n        twos |= ones & num;\n        // XOR current number with 'ones' to add bits appearing\n        // odd number of times.If a bit has appeared once, it is set\n        // if it's the second time, it gets unset.\n        ones ^= num;\n        // (ones & twos) gives bits that are set in both, meaning they\n        // have now appeared 3 times. ~(ones & twos) inverts it to create\n        // a mask where those bits are 0 (to be cleared), and others are 1.\n        // Applying this mask on 'ones' and 'twos' removes the\n        // bits that have appeared three times.\n        mask = ~(ones & twos);\n        // Apply mask to keep only valid bits that haven't appeared 3 times.\n        ones &= mask;\n        twos &= mask;\n    }\n    return ones;\n}\nint main() {\n    vector<int> arr = {1, 10, 1, 1};\n    cout << getSingle(arr) << endl;\n    return 0;\n}",
+    "code_without_comments": "#include <iostream>\n#include <vector>\nusing namespace std;\nint getSingle(vector<int>& arr) {\n    int ones = 0, twos = 0, mask;\n    for (int num : arr) {\n\n\n        twos |= ones & num;\n\n\n\n        ones ^= num;\n\n\n\n\n\n        mask = ~(ones & twos);\n\n        ones &= mask;\n        twos &= mask;\n    }\n    return ones;\n}\nint main() {\n    vector<int> arr = {1, 10, 1, 1};\n    cout << getSingle(arr) << endl;\n    return 0;\n}",
+    "has_comments": true,
+    "language": "cpp",
+    "source_url": "https://www.geeksforgeeks.org/find-the-element-that-appears-once/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "def getSingle(arr):\n    ones, twos = 0, 0\n    for num in arr:\n        # Update 'twos' with bits that are set in both 'ones' and\n        # current number. These are bits that have appeared twice so far.\n        twos |= ones & num\n        # XOR current number with 'ones' to add bits appearing\n        # odd number of times.If a bit has appeared once, it is set\n        # if it's the second time, it gets unset.\n        ones ^= num\n        # (ones & twos) gives bits that are set in both, meaning they\n        # have now appeared 3 times. ~(ones & twos) inverts it to create\n        # a mask where those bits are 0 (to be cleared), and others are 1.\n        # Applying this mask on 'ones' and 'twos' removes the\n        # bits that have appeared three times.\n        mask = ~(ones & twos)\n        ones &= mask\n        twos &= mask\n    return ones\nif __name__ == '__main__':\n    arr = [1, 10, 1, 1]\n    print(getSingle(arr))",
+    "code_without_comments": "def getSingle(arr):\n    ones, twos = 0, 0\n    for num in arr:\n        # Update 'twos' with bits that are set in both 'ones' and\n\n        twos |= ones & num\n        # XOR current number with 'ones' to add bits appearing\n\n        # if it's the second time, it gets unset.\n        ones ^= num\n\n\n\n        # Applying this mask on 'ones' and 'twos' removes the\n\n        mask = ~(ones & twos)\n        ones &= mask\n        twos &= mask\n    return ones\nif __name__ == '__main__':\n    arr = [1, 10, 1, 1]\n    print(getSingle(arr))",
+    "has_comments": true,
+    "language": "python",
+    "source_url": "https://www.geeksforgeeks.org/find-the-element-that-appears-once/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "#include <iostream>\n#include <cmath>\nusing namespace std;\nbool isPowerofTwo(int n) {\n    if (n <= 0)\n        return false;\n    // Calculate log base 2 of n\n    int logValue = log2(n);\n    // Check if log2(n) is an integer\n    // and 2^(logn) = n\n    return pow(2, logValue) == n;\n}\nint main() {\n    int n = 16;\n    if (isPowerofTwo(n)) {\n        cout << \"true\" << endl;\n    }\n    else {\n        cout << \"false\" << endl;\n    }\n}",
+    "code_without_comments": "#include <iostream>\n#include <cmath>\nusing namespace std;\nbool isPowerofTwo(int n) {\n    if (n <= 0)\n        return false;\n\n    int logValue = log2(n);\n\n\n    return pow(2, logValue) == n;\n}\nint main() {\n    int n = 16;\n    if (isPowerofTwo(n)) {\n        cout << \"true\" << endl;\n    }\n    else {\n        cout << \"false\" << endl;\n    }\n}",
+    "has_comments": true,
+    "language": "cpp",
+    "source_url": "https://www.geeksforgeeks.org/program-to-find-whether-a-no-is-power-of-two/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "import math\ndef isPowerofTwo(n):\n    if n <= 0:\n        return False\n    # Calculate log base 2 of n\n    logValue = int(math.log2(n))\n    # Check if log2(n) is an integer\n    # and 2^(logn) = n\n    return pow(2, logValue) == n\nif __name__ == \"__main__\":\n    n = 16\n    if isPowerofTwo(n):\n        print(\"true\")\n    else:\n        print(\"false\")",
+    "code_without_comments": "import math\ndef isPowerofTwo(n):\n    if n <= 0:\n        return False\n\n    logValue = int(math.log2(n))\n\n\n    return pow(2, logValue) == n\nif __name__ == \"__main__\":\n    n = 16\n    if isPowerofTwo(n):\n        print(\"true\")\n    else:\n        print(\"false\")",
+    "has_comments": true,
+    "language": "python",
+    "source_url": "https://www.geeksforgeeks.org/program-to-find-whether-a-no-is-power-of-two/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "# Python program to find whether\n# a given number is power of 2\ndef isPowerofTwo(n):\n    if n <= 0:\n        return False\n    while n > 1:\n        if n % 2 != 0:\n            return False\n        n = n // 2\n    return True\nif __name__ == \"__main__\":\n    n = 16\n    if isPowerofTwo(n):\n        print(\"true\")\n    else:\n        print(\"false\")",
+    "code_without_comments": "\n\ndef isPowerofTwo(n):\n    if n <= 0:\n        return False\n    while n > 1:\n        if n % 2 != 0:\n            return False\n        n = n // 2\n    return True\nif __name__ == \"__main__\":\n    n = 16\n    if isPowerofTwo(n):\n        print(\"true\")\n    else:\n        print(\"false\")",
+    "has_comments": true,
+    "language": "python",
+    "source_url": "https://www.geeksforgeeks.org/program-to-find-whether-a-no-is-power-of-two/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "#include <iostream>\nusing namespace std;\nbool isPowerofTwo(int n) {\n    if (n <= 0)\n        return false;\n    // Count set bits\n    int count = 0;\n    while (n > 0) {\n        if (n & 1)\n            count++;\n        n = n >> 1;\n    }\n    // If count of set bits is 1,\n    // then n is a power of 2\n    return (count == 1);\n}\nint main() {\n    int n = 16;\n    if (isPowerofTwo(n)) {\n        cout << \"true\" << endl;\n    }\n    else {\n        cout << \"false\" << endl;\n    }\n}",
+    "code_without_comments": "#include <iostream>\nusing namespace std;\nbool isPowerofTwo(int n) {\n    if (n <= 0)\n        return false;\n\n    int count = 0;\n    while (n > 0) {\n        if (n & 1)\n            count++;\n        n = n >> 1;\n    }\n\n\n    return (count == 1);\n}\nint main() {\n    int n = 16;\n    if (isPowerofTwo(n)) {\n        cout << \"true\" << endl;\n    }\n    else {\n        cout << \"false\" << endl;\n    }\n}",
+    "has_comments": true,
+    "language": "cpp",
+    "source_url": "https://www.geeksforgeeks.org/program-to-find-whether-a-no-is-power-of-two/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "def isPowerofTwo(n):\n    if n <= 0:\n        return False\n    # Count set bits\n    count = 0\n    while n > 0:\n        if n & 1:\n            count += 1\n        n = n >> 1\n    # If count of set bits is 1,\n    # then n is a power of 2\n    return count == 1\nif __name__ == \"__main__\":\n    n = 16\n    if isPowerofTwo(n):\n        print(\"true\")\n    else:\n        print(\"false\")",
+    "code_without_comments": "def isPowerofTwo(n):\n    if n <= 0:\n        return False\n\n    count = 0\n    while n > 0:\n        if n & 1:\n            count += 1\n        n = n >> 1\n\n\n    return count == 1\nif __name__ == \"__main__\":\n    n = 16\n    if isPowerofTwo(n):\n        print(\"true\")\n    else:\n        print(\"false\")",
+    "has_comments": true,
+    "language": "python",
+    "source_url": "https://www.geeksforgeeks.org/program-to-find-whether-a-no-is-power-of-two/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "// C++ program to find whether\n// a given number is power of 2\n#include <iostream>\nusing namespace std;\nbool isPowerofTwo(int n) {\n    // Check if n is positive and n & (n-1) is 0\n    return (n > 0) && ((n & (n-1)) == 0);\n}\nint main() {\n    int n = 16;\n    if (isPowerofTwo(n)) {\n        cout << \"true\" << endl;\n    }\n    else {\n        cout << \"false\" << endl;\n    }\n}",
+    "code_without_comments": "\n\n#include <iostream>\nusing namespace std;\nbool isPowerofTwo(int n) {\n\n    return (n > 0) && ((n & (n-1)) == 0);\n}\nint main() {\n    int n = 16;\n    if (isPowerofTwo(n)) {\n        cout << \"true\" << endl;\n    }\n    else {\n        cout << \"false\" << endl;\n    }\n}",
+    "has_comments": true,
+    "language": "cpp",
+    "source_url": "https://www.geeksforgeeks.org/program-to-find-whether-a-no-is-power-of-two/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "# Python program to find whether\n# a given number is power of 2\ndef isPowerofTwo(n):\n    # Check if n is positive and n & (n-1) is 0\n    return (n > 0) and ((n & (n - 1)) == 0)\nif __name__ == \"__main__\":\n    n = 16\n    if isPowerofTwo(n):\n        print(\"true\")\n    else:\n        print(\"false\")",
+    "code_without_comments": "\n\ndef isPowerofTwo(n):\n\n    return (n > 0) and ((n & (n - 1)) == 0)\nif __name__ == \"__main__\":\n    n = 16\n    if isPowerofTwo(n):\n        print(\"true\")\n    else:\n        print(\"false\")",
+    "has_comments": true,
+    "language": "python",
+    "source_url": "https://www.geeksforgeeks.org/program-to-find-whether-a-no-is-power-of-two/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "// C++ program to find whether\n// a given number is power of 2\n#include <iostream>\nusing namespace std;\nbool isPowerofTwo(int n) {\n    // Check if n is positive and n & ~(n-1) equals n\n    return (n > 0) && ((n & (~(n-1))) == n);\n}\nint main() {\n    int n = 16;\n    if (isPowerofTwo(n)) {\n        cout << \"true\" << endl;\n    }\n    else {\n        cout << \"false\" << endl;\n    }\n}",
+    "code_without_comments": "\n\n#include <iostream>\nusing namespace std;\nbool isPowerofTwo(int n) {\n\n    return (n > 0) && ((n & (~(n-1))) == n);\n}\nint main() {\n    int n = 16;\n    if (isPowerofTwo(n)) {\n        cout << \"true\" << endl;\n    }\n    else {\n        cout << \"false\" << endl;\n    }\n}",
+    "has_comments": true,
+    "language": "cpp",
+    "source_url": "https://www.geeksforgeeks.org/program-to-find-whether-a-no-is-power-of-two/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "#include <algorithm> // for reverse function\n#include <iostream>  // for input/output operations\n#include <vector>    // for vector container\nusing namespace std;\n// Function to rotate an array by k elements to the right\nvoid rotateArray(vector<int>& arr, int k)\n{\n    // Find the size of the array\n    int n = arr.size();\n    // Mod k with the size of the array\n    // To handle the case where k is greater than the size of the array\n    k %= n;\n    // Reverse the entire array\n    reverse(arr.begin(), arr.end());\n    // Reverse the first k elements\n    reverse(arr.begin(), arr.begin() + k);\n    // Reverse the remaining n-k elements\n    reverse(arr.begin() + k, arr.end());\n}\nint main()\n{\n    // Initialize the array\n    vector<int> arr = { 1, 2, 3, 4, 5 };\n    // Number of elements to rotate to the right\n    int k = 2;\n    // Call the rotateArray function to rotate the array\n    rotateArray(arr, k);\n    // Print the rotated array\n    for (int i : arr) {\n        cout << i << \" \";\n    }\n    // Return 0 to indicate successful termination of the program\n    return 0;\n}",
+    "code_without_comments": "#include <algorithm>\n#include <iostream>\n#include <vector>\nusing namespace std;\n\nvoid rotateArray(vector<int>& arr, int k)\n{\n\n    int n = arr.size();\n\n\n    k %= n;\n\n    reverse(arr.begin(), arr.end());\n\n    reverse(arr.begin(), arr.begin() + k);\n\n    reverse(arr.begin() + k, arr.end());\n}\nint main()\n{\n\n    vector<int> arr = { 1, 2, 3, 4, 5 };\n\n    int k = 2;\n\n    rotateArray(arr, k);\n\n    for (int i : arr) {\n        cout << i << \" \";\n    }\n\n    return 0;\n}",
+    "has_comments": true,
+    "language": "cpp",
+    "source_url": "https://www.geeksforgeeks.org/program-for-array-rotation-continued-reversal-algorithm/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "// C++ program for reversal algorithm\n// of array rotation\n#include <bits/stdc++.h>\nusing namespace std;\n// Function to reverse arr[]\n// from index start to end\nvoid reverseArray(int arr[], int start, int end)\n{\n    while (start < end) {\n        int temp = arr[start];\n        arr[start] = arr[end];\n        arr[end] = temp;\n        start++;\n        end--;\n    }\n}\n// Function to left rotate arr[] of size n by d\nvoid leftRotate(int arr[], int d, int n)\n{\n    if (d == 0)\n        return;\n    // In case the rotating factor is\n    // greater than array length\n    d = d % n;\n    reverseArray(arr, 0, d - 1);\n    reverseArray(arr, d, n - 1);\n    reverseArray(arr, 0, n - 1);\n}\n// Function to print an array\nvoid printArray(int arr[], int size)\n{\n    for (int i = 0; i < size; i++)\n        cout << arr[i] << \" \";\n}\n// Driver code\nint main()\n{\n    int arr[] = { 1, 2, 3, 4, 5, 6, 7 };\n    int N = sizeof(arr) / sizeof(arr[0]);\n    int d = 2;\n    // Function call\n    leftRotate(arr, d, N);\n    printArray(arr, N);\n    return 0;\n}",
+    "code_without_comments": "\n\n#include <bits/stdc++.h>\nusing namespace std;\n\n\nvoid reverseArray(int arr[], int start, int end)\n{\n    while (start < end) {\n        int temp = arr[start];\n        arr[start] = arr[end];\n        arr[end] = temp;\n        start++;\n        end--;\n    }\n}\n\nvoid leftRotate(int arr[], int d, int n)\n{\n    if (d == 0)\n        return;\n\n\n    d = d % n;\n    reverseArray(arr, 0, d - 1);\n    reverseArray(arr, d, n - 1);\n    reverseArray(arr, 0, n - 1);\n}\n\nvoid printArray(int arr[], int size)\n{\n    for (int i = 0; i < size; i++)\n        cout << arr[i] << \" \";\n}\n\nint main()\n{\n    int arr[] = { 1, 2, 3, 4, 5, 6, 7 };\n    int N = sizeof(arr) / sizeof(arr[0]);\n    int d = 2;\n\n    leftRotate(arr, d, N);\n    printArray(arr, N);\n    return 0;\n}",
+    "has_comments": true,
+    "language": "cpp",
+    "source_url": "https://www.geeksforgeeks.org/program-for-array-rotation-continued-reversal-algorithm/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "// C/C++ program for reversal algorithm of array rotation\n#include <stdio.h>\n/*Utility function to print an array */\nvoid printArray(int arr[], int size);\n/* Utility function to reverse arr[] from start to end */\nvoid reverseArray(int arr[], int start, int end);\n/* Function to left rotate arr[] of size n by d */\nvoid leftRotate(int arr[], int d, int n)\n{\n    if (d == 0)\n        return;\n    // in case the rotating factor is\n    // greater than array length\n    d = d % n;\n    reverseArray(arr, 0, d - 1);\n    reverseArray(arr, d, n - 1);\n    reverseArray(arr, 0, n - 1);\n}\n/*UTILITY FUNCTIONS*/\n/* function to print an array */\nvoid printArray(int arr[], int size)\n{\n    int i;\n    for (i = 0; i < size; i++)\n        printf(\"%d \", arr[i]);\n}\n/*Function to reverse arr[] from index start to end*/\nvoid reverseArray(int arr[], int start, int end)\n{\n    int temp;\n    while (start < end) {\n        temp = arr[start];\n        arr[start] = arr[end];\n        arr[end] = temp;\n        start++;\n        end--;\n    }\n}\n/* Driver program to test above functions */\nint main()\n{\n    int arr[] = { 1, 2, 3, 4, 5, 6, 7 };\n    int n = sizeof(arr) / sizeof(arr[0]);\n    int d = 2;\n    leftRotate(arr, d, n);\n    printArray(arr, n);\n    return 0;\n}",
+    "code_without_comments": "\n#include <stdio.h>\n\nvoid printArray(int arr[], int size);\n\nvoid reverseArray(int arr[], int start, int end);\n\nvoid leftRotate(int arr[], int d, int n)\n{\n    if (d == 0)\n        return;\n\n\n    d = d % n;\n    reverseArray(arr, 0, d - 1);\n    reverseArray(arr, d, n - 1);\n    reverseArray(arr, 0, n - 1);\n}\n\n\nvoid printArray(int arr[], int size)\n{\n    int i;\n    for (i = 0; i < size; i++)\n        printf(\"%d \", arr[i]);\n}\n\nvoid reverseArray(int arr[], int start, int end)\n{\n    int temp;\n    while (start < end) {\n        temp = arr[start];\n        arr[start] = arr[end];\n        arr[end] = temp;\n        start++;\n        end--;\n    }\n}\n\nint main()\n{\n    int arr[] = { 1, 2, 3, 4, 5, 6, 7 };\n    int n = sizeof(arr) / sizeof(arr[0]);\n    int d = 2;\n    leftRotate(arr, d, n);\n    printArray(arr, n);\n    return 0;\n}",
+    "has_comments": true,
+    "language": "cpp",
+    "source_url": "https://www.geeksforgeeks.org/program-for-array-rotation-continued-reversal-algorithm/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "// Java program for reversal algorithm of array rotation\nimport java.io.*;\nclass LeftRotate {\n    /* Function to left rotate arr[] of size n by d */\n    static void leftRotate(int arr[], int d)\n    {\n        if (d == 0)\n            return;\n        int n = arr.length;\n        // in case the rotating factor is\n        // greater than array length\n        d = d % n;\n        reverseArray(arr, 0, d - 1);\n        reverseArray(arr, d, n - 1);\n        reverseArray(arr, 0, n - 1);\n    }\n    /*Function to reverse arr[] from index start to end*/\n    static void reverseArray(int arr[], int start, int end)\n    {\n        int temp;\n        while (start < end) {\n            temp = arr[start];\n            arr[start] = arr[end];\n            arr[end] = temp;\n            start++;\n            end--;\n        }\n    }\n    /*UTILITY FUNCTIONS*/\n    /* function to print an array */\n    static void printArray(int arr[])\n    {\n        for (int i = 0; i < arr.length; i++)\n            System.out.print(arr[i] + \" \");\n    }\n    /* Driver program to test above functions */\n    public static void main(String[] args)\n    {\n        int arr[] = { 1, 2, 3, 4, 5, 6, 7 };\n        int n = arr.length;\n        int d = 2;\n        leftRotate(arr, d); // Rotate array by d\n        printArray(arr);\n    }\n}\n/*This code is contributed by Devesh Agrawal*/",
+    "code_without_comments": "// Java program for reversal algorithm of array rotation\nimport java.io.*;\nclass LeftRotate {\n    /* Function to left rotate arr[] of size n by d */\n    static void leftRotate(int arr[], int d)\n    {\n        if (d == 0)\n            return;\n        int n = arr.length;\n        // in case the rotating factor is\n        // greater than array length\n        d = d % n;\n        reverseArray(arr, 0, d - 1);\n        reverseArray(arr, d, n - 1);\n        reverseArray(arr, 0, n - 1);\n    }\n    /*Function to reverse arr[] from index start to end*/\n    static void reverseArray(int arr[], int start, int end)\n    {\n        int temp;\n        while (start < end) {\n            temp = arr[start];\n            arr[start] = arr[end];\n            arr[end] = temp;\n            start++;\n            end--;\n        }\n    }\n    /*UTILITY FUNCTIONS*/\n    /* function to print an array */\n    static void printArray(int arr[])\n    {\n        for (int i = 0; i < arr.length; i++)\n            System.out.print(arr[i] + \" \");\n    }\n    /* Driver program to test above functions */\n    public static void main(String[] args)\n    {\n        int arr[] = { 1, 2, 3, 4, 5, 6, 7 };\n        int n = arr.length;\n        int d = 2;\n        leftRotate(arr, d); // Rotate array by d\n        printArray(arr);\n    }\n}\n/*This code is contributed by Devesh Agrawal*/",
+    "has_comments": true,
+    "language": "python",
+    "source_url": "https://www.geeksforgeeks.org/program-for-array-rotation-continued-reversal-algorithm/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "# Python program for reversal algorithm of array rotation\n# Function to reverse arr[] from index start to end\ndef reverseArray(arr, start, end):\n    while (start < end):\n        temp = arr[start]\n        arr[start] = arr[end]\n        arr[end] = temp\n        start += 1\n        end = end-1\n# Function to left rotate arr[] of size n by d\ndef leftRotate(arr, d):\n    if d == 0:\n        return\n    n = len(arr)\n    # in case the rotating factor is\n    # greater than array length\n    d = d % n\n    reverseArray(arr, 0, d-1)\n    reverseArray(arr, d, n-1)\n    reverseArray(arr, 0, n-1)\n# Function to print an array\ndef printArray(arr):\n    for i in range(0, len(arr)):\n        print (arr[i],end=' ')\n# Driver function to test above functions\narr = [1, 2, 3, 4, 5, 6, 7]\nn = len(arr)\nd = 2\nleftRotate(arr, d)  # Rotate array by 2\nprintArray(arr)\n# This code is contributed by Devesh Agrawal",
+    "code_without_comments": "\n\ndef reverseArray(arr, start, end):\n    while (start < end):\n        temp = arr[start]\n        arr[start] = arr[end]\n        arr[end] = temp\n        start += 1\n        end = end-1\n\ndef leftRotate(arr, d):\n    if d == 0:\n        return\n    n = len(arr)\n\n\n    d = d % n\n    reverseArray(arr, 0, d-1)\n    reverseArray(arr, d, n-1)\n    reverseArray(arr, 0, n-1)\n\ndef printArray(arr):\n    for i in range(0, len(arr)):\n        print (arr[i],end=' ')\n\narr = [1, 2, 3, 4, 5, 6, 7]\nn = len(arr)\nd = 2\nleftRotate(arr, d)\nprintArray(arr)\n",
+    "has_comments": true,
+    "language": "python",
+    "source_url": "https://www.geeksforgeeks.org/program-for-array-rotation-continued-reversal-algorithm/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "#include <algorithm> // for reverse function\n#include <iostream>  // for input/output operations\n#include <vector>    // for vector container\nusing namespace std;\n// Function to rotate an array by k elements to the right\nvoid rotateArray(vector<int>& arr, int k)\n{\n    // Find the size of the array\n    int n = arr.size();\n    // Mod k with the size of the array\n    // To handle the case where k is greater than the size of the array\n    k %= n;\n    // Reverse the entire array\n    reverse(arr.begin(), arr.end());\n    // Reverse the first k elements\n    reverse(arr.begin(), arr.begin() + k);\n    // Reverse the remaining n-k elements\n    reverse(arr.begin() + k, arr.end());\n}\nint main()\n{\n    // Initialize the array\n    vector<int> arr = { 1, 2, 3, 4, 5 };\n    // Number of elements to rotate to the right\n    int k = 2;\n    // Call the rotateArray function to rotate the array\n    rotateArray(arr, k);\n    // Print the rotated array\n    for (int i : arr) {\n        cout << i << \" \";\n    }\n    // Return 0 to indicate successful termination of the program\n    return 0;\n}",
+    "code_without_comments": "#include <algorithm>\n#include <iostream>\n#include <vector>\nusing namespace std;\n\nvoid rotateArray(vector<int>& arr, int k)\n{\n\n    int n = arr.size();\n\n\n    k %= n;\n\n    reverse(arr.begin(), arr.end());\n\n    reverse(arr.begin(), arr.begin() + k);\n\n    reverse(arr.begin() + k, arr.end());\n}\nint main()\n{\n\n    vector<int> arr = { 1, 2, 3, 4, 5 };\n\n    int k = 2;\n\n    rotateArray(arr, k);\n\n    for (int i : arr) {\n        cout << i << \" \";\n    }\n\n    return 0;\n}",
+    "has_comments": true,
+    "language": "cpp",
+    "source_url": "https://www.geeksforgeeks.org/program-for-array-rotation-continued-reversal-algorithm/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "# Function to rotate an array by k elements to the right\ndef rotateArray(arr, k):\n    # Find the size of the array\n    n = len(arr);\n    # Mod k with the size of the array\n    # To handle the case where k is greater than the size of the array\n    k %= n;\n    # Reverse the entire array\n    arr[0:n] = arr[0:n][::-1]\n    # Reverse the first k elements\n    arr[0:k] = arr[0:k][::-1]\n    # Reverse the remaining n-k elements\n    arr[k:n] = arr[k:n][::-1]\n# Initialize the array\narr = [ 1, 2, 3, 4, 5 ];\n# Number of elements to rotate to the right\nk = 2;\n# Call the rotateArray function to rotate the array\nrotateArray(arr, k);\n# Print the rotated array\nfor i in range(0,len(arr)):\n    print(arr[i], end= \" \");",
+    "code_without_comments": "\ndef rotateArray(arr, k):\n\n    n = len(arr);\n\n\n    k %= n;\n\n    arr[0:n] = arr[0:n][::-1]\n\n    arr[0:k] = arr[0:k][::-1]\n\n    arr[k:n] = arr[k:n][::-1]\n\narr = [ 1, 2, 3, 4, 5 ];\n\nk = 2;\n\nrotateArray(arr, k);\n\nfor i in range(0,len(arr)):\n    print(arr[i], end= \" \");",
+    "has_comments": true,
+    "language": "python",
+    "source_url": "https://www.geeksforgeeks.org/program-for-array-rotation-continued-reversal-algorithm/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\nint maxSubarraySum(vector<int> &arr) {\n    int res = arr[0];\n    // Outer loop for starting point of subarray\n  \tfor(int i = 0; i < arr.size(); i++) {\n    \tint currSum = 0;\n        // Inner loop for ending point of subarray\n        for(int j = i; j < arr.size(); j++) {\n        \tcurrSum = currSum + arr[j];\n            // Update res if currSum is greater than res\n            res = max(res, currSum);\n        }\n    }\n    return res;\n}\nint main() {\n    vector<int> arr = {2, 3, -8, 7, -1, 2, 3};\n    cout << maxSubarraySum(arr);\n    return 0;\n}",
+    "code_without_comments": "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\nint maxSubarraySum(vector<int> &arr) {\n    int res = arr[0];\n\n  \tfor(int i = 0; i < arr.size(); i++) {\n    \tint currSum = 0;\n\n        for(int j = i; j < arr.size(); j++) {\n        \tcurrSum = currSum + arr[j];\n\n            res = max(res, currSum);\n        }\n    }\n    return res;\n}\nint main() {\n    vector<int> arr = {2, 3, -8, 7, -1, 2, 3};\n    cout << maxSubarraySum(arr);\n    return 0;\n}",
+    "has_comments": true,
+    "language": "cpp",
+    "source_url": "https://www.geeksforgeeks.org/largest-sum-contiguous-subarray/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "#include <stdio.h>\nint maxSubarraySum(int arr[], int size) {\n    int maxSum = arr[0];\n    // Outer loop for starting point of subarray\n    for (int i = 0; i < size; i++) {\n        int currSum = 0;\n        // Inner loop for ending point of subarray\n        for (int j = i; j < size; j++) {\n            currSum = currSum + arr[j];\n            // Update maxSum if currSum is greater than maxSum\n            if (currSum > maxSum) {\n                maxSum = currSum;\n            }\n        }\n    }\n    return maxSum;\n}\nint main() {\n    int arr[] = {2, 3, -8, 7, -1, 2, 3};\n    int size = sizeof(arr) / sizeof(arr[0]);\n    printf(\"%d\", maxSubarraySum(arr, size));\n    return 0;\n}",
+    "code_without_comments": "#include <stdio.h>\nint maxSubarraySum(int arr[], int size) {\n    int maxSum = arr[0];\n\n    for (int i = 0; i < size; i++) {\n        int currSum = 0;\n\n        for (int j = i; j < size; j++) {\n            currSum = currSum + arr[j];\n\n            if (currSum > maxSum) {\n                maxSum = currSum;\n            }\n        }\n    }\n    return maxSum;\n}\nint main() {\n    int arr[] = {2, 3, -8, 7, -1, 2, 3};\n    int size = sizeof(arr) / sizeof(arr[0]);\n    printf(\"%d\", maxSubarraySum(arr, size));\n    return 0;\n}",
+    "has_comments": true,
+    "language": "cpp",
+    "source_url": "https://www.geeksforgeeks.org/largest-sum-contiguous-subarray/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "def maxSubarraySum(arr):\n    res = arr[0]\n    # Outer loop for starting point of subarray\n    for i in range(len(arr)):\n        currSum = 0\n        # Inner loop for ending point of subarray\n        for j in range(i, len(arr)):\n            currSum = currSum + arr[j]\n            # Update res if currSum is greater than res\n            res = max(res, currSum)\n    return res\nif __name__ == \"__main__\":\n    arr = [2, 3, -8, 7, -1, 2, 3]\n    print(maxSubarraySum(arr))",
+    "code_without_comments": "def maxSubarraySum(arr):\n    res = arr[0]\n\n    for i in range(len(arr)):\n        currSum = 0\n\n        for j in range(i, len(arr)):\n            currSum = currSum + arr[j]\n\n            res = max(res, currSum)\n    return res\nif __name__ == \"__main__\":\n    arr = [2, 3, -8, 7, -1, 2, 3]\n    print(maxSubarraySum(arr))",
+    "has_comments": true,
+    "language": "python",
+    "source_url": "https://www.geeksforgeeks.org/largest-sum-contiguous-subarray/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\nint maxSubarraySum(vector<int> &arr) {\n    // Stores the result (maximum sum found so far)\n    int res = arr[0];\n    // Maximum sum of subarray ending at current position\n    int maxEnding = arr[0];\n    for (int i = 1; i < arr.size(); i++) {\n        // Either extend the previous subarray or start\n        // new from current element\n        maxEnding = max(arr[i], maxEnding + arr[i]);\n        // Update result if the new subarray sum is larger\n        res = max(res, maxEnding);\n    }\n    return res;\n}\nint main() {\n    vector<int> arr = {2, 3, -8, 7, -1, 2, 3};\n    cout << maxSubarraySum(arr);\n    return 0;\n}",
+    "code_without_comments": "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\nint maxSubarraySum(vector<int> &arr) {\n\n    int res = arr[0];\n\n    int maxEnding = arr[0];\n    for (int i = 1; i < arr.size(); i++) {\n\n\n        maxEnding = max(arr[i], maxEnding + arr[i]);\n\n        res = max(res, maxEnding);\n    }\n    return res;\n}\nint main() {\n    vector<int> arr = {2, 3, -8, 7, -1, 2, 3};\n    cout << maxSubarraySum(arr);\n    return 0;\n}",
+    "has_comments": true,
+    "language": "cpp",
+    "source_url": "https://www.geeksforgeeks.org/largest-sum-contiguous-subarray/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "#include <stdio.h>\n#include <limits.h>\nint maxSubarraySum(int arr[], int size) {\n    // Stores the result (maximum sum found so far)\n    int res = arr[0];\n    // Maximum sum of subarray ending at current position\n    int maxEnding = arr[0];\n    for (int i = 1; i < size; i++) {\n        // Either extend the previous subarray or start\n        // new from current element\n        maxEnding = (maxEnding + arr[i] > arr[i]) ?\n          \t\t\t\t\t\t\t\t\tmaxEnding + arr[i] : arr[i];\n        // Update result if the new subarray sum is larger\n        res = (res > maxEnding) ? res : maxEnding;\n    }\n    return res;\n}\nint main() {\n    int arr[] = {2, 3, -8, 7, -1, 2, 3};\n    int size = sizeof(arr) / sizeof(arr[0]);\n    printf(\"%lld\\n\", maxSubarraySum(arr, size));\n    return 0;\n}",
+    "code_without_comments": "#include <stdio.h>\n#include <limits.h>\nint maxSubarraySum(int arr[], int size) {\n\n    int res = arr[0];\n\n    int maxEnding = arr[0];\n    for (int i = 1; i < size; i++) {\n\n\n        maxEnding = (maxEnding + arr[i] > arr[i]) ?\n          \t\t\t\t\t\t\t\t\tmaxEnding + arr[i] : arr[i];\n\n        res = (res > maxEnding) ? res : maxEnding;\n    }\n    return res;\n}\nint main() {\n    int arr[] = {2, 3, -8, 7, -1, 2, 3};\n    int size = sizeof(arr) / sizeof(arr[0]);\n    printf(\"%lld\\n\", maxSubarraySum(arr, size));\n    return 0;\n}",
+    "has_comments": true,
+    "language": "cpp",
+    "source_url": "https://www.geeksforgeeks.org/largest-sum-contiguous-subarray/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "def maxSubarraySum(arr):\n    # Stores the result (maximum sum found so far)\n    res = arr[0]\n    # Maximum sum of subarray ending at current position\n    maxEnding = arr[0]\n    for i in range(1, len(arr)):\n        # Either extend the previous subarray or start\n        # new from current element\n        maxEnding = max(maxEnding + arr[i], arr[i])\n        # Update result if the new subarray sum is larger\n        res = max(res, maxEnding)\n    return res\nif __name__ == \"__main__\":\n    arr = [2, 3, -8, 7, -1, 2, 3]\n    print(maxSubarraySum(arr))",
+    "code_without_comments": "def maxSubarraySum(arr):\n\n    res = arr[0]\n\n    maxEnding = arr[0]\n    for i in range(1, len(arr)):\n\n\n        maxEnding = max(maxEnding + arr[i], arr[i])\n\n        res = max(res, maxEnding)\n    return res\nif __name__ == \"__main__\":\n    arr = [2, 3, -8, 7, -1, 2, 3]\n    print(maxSubarraySum(arr))",
+    "has_comments": true,
+    "language": "python",
+    "source_url": "https://www.geeksforgeeks.org/largest-sum-contiguous-subarray/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "#include <iostream>\n#include <vector>\nusing namespace std;\nint maxWater(vector<int>& arr) {\n    int res = 0;\n    // For every element of the array\n    for (int i = 1; i < arr.size() - 1; i++) {\n        // Find the maximum element on its left\n        int left = arr[i];\n        for (int j = 0; j < i; j++)\n            left = max(left, arr[j]);\n        // Find the maximum element on its right\n        int right = arr[i];\n        for (int j = i + 1; j < arr.size(); j++)\n            right = max(right, arr[j]);\n        // Update the maximum water\n        res += (min(left, right) - arr[i]);\n    }\n    return res;\n}\nint main() {\n    vector<int> arr = { 2, 1, 5, 3, 1, 0, 4 };\n    cout << maxWater(arr);\n    return 0;\n}",
+    "code_without_comments": "#include <iostream>\n#include <vector>\nusing namespace std;\nint maxWater(vector<int>& arr) {\n    int res = 0;\n\n    for (int i = 1; i < arr.size() - 1; i++) {\n\n        int left = arr[i];\n        for (int j = 0; j < i; j++)\n            left = max(left, arr[j]);\n\n        int right = arr[i];\n        for (int j = i + 1; j < arr.size(); j++)\n            right = max(right, arr[j]);\n\n        res += (min(left, right) - arr[i]);\n    }\n    return res;\n}\nint main() {\n    vector<int> arr = { 2, 1, 5, 3, 1, 0, 4 };\n    cout << maxWater(arr);\n    return 0;\n}",
+    "has_comments": true,
+    "language": "cpp",
+    "source_url": "https://www.geeksforgeeks.org/trapping-rain-water/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "#include <stdio.h>\nint maxWater(int arr[], int n) {\n    int res = 0;\n    // For every element of the array\n    for (int i = 1; i < n - 1; i++) {\n        // Find the maximum element on its left\n        int left = arr[i];\n        for (int j = 0; j < i; j++)\n            if (arr[j] > left)\n                left = arr[j];\n        // Find the maximum element on its right\n        int right = arr[i];\n        for (int j = i + 1; j < n; j++)\n            if (arr[j] > right)\n                right = arr[j];\n        // Update the maximum water\n        res += (left < right ? left : right) - arr[i];\n    }\n    return res;\n}\n// Driver code\nint main() {\n    int arr[] = { 2, 1, 5, 3, 1, 0, 4 };\n    int n = sizeof(arr) / sizeof(arr[0]);\n    printf(\"%d\", maxWater(arr, n));\n    return 0;\n}",
+    "code_without_comments": "#include <stdio.h>\nint maxWater(int arr[], int n) {\n    int res = 0;\n\n    for (int i = 1; i < n - 1; i++) {\n\n        int left = arr[i];\n        for (int j = 0; j < i; j++)\n            if (arr[j] > left)\n                left = arr[j];\n\n        int right = arr[i];\n        for (int j = i + 1; j < n; j++)\n            if (arr[j] > right)\n                right = arr[j];\n\n        res += (left < right ? left : right) - arr[i];\n    }\n    return res;\n}\n\nint main() {\n    int arr[] = { 2, 1, 5, 3, 1, 0, 4 };\n    int n = sizeof(arr) / sizeof(arr[0]);\n    printf(\"%d\", maxWater(arr, n));\n    return 0;\n}",
+    "has_comments": true,
+    "language": "cpp",
+    "source_url": "https://www.geeksforgeeks.org/trapping-rain-water/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "def maxWater(arr):\n    res = 0\n    # For every element of the array\n    for i in range(1, len(arr) - 1):\n        # Find the maximum element on its left\n        left = arr[i]\n        for j in range(i):\n            left = max(left, arr[j])\n        # Find the maximum element on its right\n        right = arr[i]\n        for j in range(i + 1, len(arr)):\n            right = max(right, arr[j])\n        # Update the maximum water\n        res += (min(left, right) - arr[i])\n    return res\nif __name__ == \"__main__\":\n    arr = [2, 1, 5, 3, 1, 0, 4]\n    print(maxWater(arr))",
+    "code_without_comments": "def maxWater(arr):\n    res = 0\n\n    for i in range(1, len(arr) - 1):\n\n        left = arr[i]\n        for j in range(i):\n            left = max(left, arr[j])\n\n        right = arr[i]\n        for j in range(i + 1, len(arr)):\n            right = max(right, arr[j])\n\n        res += (min(left, right) - arr[i])\n    return res\nif __name__ == \"__main__\":\n    arr = [2, 1, 5, 3, 1, 0, 4]\n    print(maxWater(arr))",
+    "has_comments": true,
+    "language": "python",
+    "source_url": "https://www.geeksforgeeks.org/trapping-rain-water/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "#include <iostream>\n#include <vector>\nusing namespace std;\nint maxWater(vector<int>& arr) {\n    int n = arr.size();\n    // left[i] contains height of tallest bar to the\n    // left of i'th bar including itself\n    vector<int> left(n);\n    // right[i] contains height of tallest bar to\n    // the right of i'th bar including itself\n    vector<int> right(n);\n    int res = 0;\n    // fill left array\n    left[0] = arr[0];\n    for (int i = 1; i < n; i++)\n        left[i] = max(left[i - 1], arr[i]);\n    // fill right array\n    right[n - 1] = arr[n - 1];\n    for (int i = n - 2; i >= 0; i--)\n        right[i] = max(right[i + 1], arr[i]);\n    // calculate the accumulated water element by element\n    for (int i = 1; i < n - 1; i++) {\n        int minOf2 = min(left[i], right[i]);\n            res += minOf2 - arr[i];\n    }\n    return res;\n}\nint main() {\n    vector<int> arr = { 2, 1, 5, 3, 1, 0, 4 };\n    cout << maxWater(arr);\n    return 0;\n}",
+    "code_without_comments": "#include <iostream>\n#include <vector>\nusing namespace std;\nint maxWater(vector<int>& arr) {\n    int n = arr.size();\n\n\n    vector<int> left(n);\n\n\n    vector<int> right(n);\n    int res = 0;\n\n    left[0] = arr[0];\n    for (int i = 1; i < n; i++)\n        left[i] = max(left[i - 1], arr[i]);\n\n    right[n - 1] = arr[n - 1];\n    for (int i = n - 2; i >= 0; i--)\n        right[i] = max(right[i + 1], arr[i]);\n\n    for (int i = 1; i < n - 1; i++) {\n        int minOf2 = min(left[i], right[i]);\n            res += minOf2 - arr[i];\n    }\n    return res;\n}\nint main() {\n    vector<int> arr = { 2, 1, 5, 3, 1, 0, 4 };\n    cout << maxWater(arr);\n    return 0;\n}",
+    "has_comments": true,
+    "language": "cpp",
+    "source_url": "https://www.geeksforgeeks.org/trapping-rain-water/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "#include <stdio.h>\nint maxWater(int arr[], int n) {\n    // left[i] contains height of tallest bar to the\n    // left of i'th bar including itself\n    int left[n];\n    // right[i] contains height of tallest bar to\n    // the right of i'th bar including itself\n    int right[n];\n    int res = 0;\n    // fill left array\n    left[0] = arr[0];\n    for (int i = 1; i < n; i++)\n        left[i] = left[i - 1] > arr[i] ? left[i - 1] : arr[i];\n    // fill right array\n    right[n - 1] = arr[n - 1];\n    for (int i = n - 2; i >= 0; i--)\n        right[i] = right[i + 1] > arr[i] ? right[i + 1] : arr[i];\n    // calcualte the accumulated water element by element\n    for (int i = 1; i < n - 1; i++) {\n        int minOf2 = left[i] < right[i] ? left[i] : right[i];\n            res += minOf2 - arr[i];\n    }\n    return res;\n}\nint main() {\n    int arr[] = { 2, 1, 5, 3, 1, 0, 4 };\n    int n = sizeof(arr) / sizeof(arr[0]);\n    printf(\"%d\", maxWater(arr, n));\n    return 0;\n}",
+    "code_without_comments": "#include <stdio.h>\nint maxWater(int arr[], int n) {\n\n\n    int left[n];\n\n\n    int right[n];\n    int res = 0;\n\n    left[0] = arr[0];\n    for (int i = 1; i < n; i++)\n        left[i] = left[i - 1] > arr[i] ? left[i - 1] : arr[i];\n\n    right[n - 1] = arr[n - 1];\n    for (int i = n - 2; i >= 0; i--)\n        right[i] = right[i + 1] > arr[i] ? right[i + 1] : arr[i];\n\n    for (int i = 1; i < n - 1; i++) {\n        int minOf2 = left[i] < right[i] ? left[i] : right[i];\n            res += minOf2 - arr[i];\n    }\n    return res;\n}\nint main() {\n    int arr[] = { 2, 1, 5, 3, 1, 0, 4 };\n    int n = sizeof(arr) / sizeof(arr[0]);\n    printf(\"%d\", maxWater(arr, n));\n    return 0;\n}",
+    "has_comments": true,
+    "language": "cpp",
+    "source_url": "https://www.geeksforgeeks.org/trapping-rain-water/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "def maxWater(arr):\n    n = len(arr)\n    # left array\n    left = [0] * n\n    # right array\n    right = [0] * n\n    res = 0\n    # fill left array\n    left[0] = arr[0]\n    for i in range(1, n):\n        left[i] = max(left[i - 1], arr[i])\n    # fill right array\n    right[n - 1] = arr[n - 1]\n    for i in range(n - 2, -1, -1):\n        right[i] = max(right[i + 1], arr[i])\n    # calculate the accumulated water element by element\n    for i in range(1, n - 1):\n        min_of_2 = min(left[i], right[i])\n        res += min_of_2 - arr[i]\n    return res\nif __name__ == \"__main__\":\n    arr = [2, 1, 5, 3, 1, 0, 4]\n    print(maxWater(arr))",
+    "code_without_comments": "def maxWater(arr):\n    n = len(arr)\n\n    left = [0] * n\n\n    right = [0] * n\n    res = 0\n\n    left[0] = arr[0]\n    for i in range(1, n):\n        left[i] = max(left[i - 1], arr[i])\n\n    right[n - 1] = arr[n - 1]\n    for i in range(n - 2, -1, -1):\n        right[i] = max(right[i + 1], arr[i])\n\n    for i in range(1, n - 1):\n        min_of_2 = min(left[i], right[i])\n        res += min_of_2 - arr[i]\n    return res\nif __name__ == \"__main__\":\n    arr = [2, 1, 5, 3, 1, 0, 4]\n    print(maxWater(arr))",
+    "has_comments": true,
+    "language": "python",
+    "source_url": "https://www.geeksforgeeks.org/trapping-rain-water/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "#include <iostream>\n#include <vector>\nusing namespace std;\nint maxWater(vector<int> &arr) {\n    int left = 1;\n    int right = arr.size() - 2;\n    // lMax : Maximum in subarray arr[0..left-1]\n    // rMax : Maximum in subarray arr[right+1..n-1]\n    int lMax = arr[left - 1];\n    int rMax = arr[right + 1];\n    int res = 0;\n    while (left <= right) {\n        // If rMax is smaller, then we can\n        // decide the amount of water for arr[right]\n        if (rMax <= lMax) {\n            // Add the water for arr[right]\n            res += max(0, rMax - arr[right]);\n            // Update right max\n            rMax = max(rMax, arr[right]);\n            // Update right pointer as we have\n            // decided the amount of water for this\n            right -= 1;\n        } else {\n            // Add the water for arr[left]\n            res += max(0, lMax - arr[left]);\n            // Update left max\n            lMax = max(lMax, arr[left]);\n            // Update left pointer as we have\n            // decided water for this\n            left += 1;\n        }\n    }\n    return res;\n}\nint main() {\n    vector<int> arr = {2, 1, 5, 3, 1, 0, 4};\n    cout << maxWater(arr) << endl;\n    return 0;\n}",
+    "code_without_comments": "#include <iostream>\n#include <vector>\nusing namespace std;\nint maxWater(vector<int> &arr) {\n    int left = 1;\n    int right = arr.size() - 2;\n\n\n    int lMax = arr[left - 1];\n    int rMax = arr[right + 1];\n    int res = 0;\n    while (left <= right) {\n\n\n        if (rMax <= lMax) {\n\n            res += max(0, rMax - arr[right]);\n\n            rMax = max(rMax, arr[right]);\n\n\n            right -= 1;\n        } else {\n\n            res += max(0, lMax - arr[left]);\n\n            lMax = max(lMax, arr[left]);\n\n\n            left += 1;\n        }\n    }\n    return res;\n}\nint main() {\n    vector<int> arr = {2, 1, 5, 3, 1, 0, 4};\n    cout << maxWater(arr) << endl;\n    return 0;\n}",
+    "has_comments": true,
+    "language": "cpp",
+    "source_url": "https://www.geeksforgeeks.org/trapping-rain-water/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "#include <stdio.h>\nint maxWater(int arr[], int n) {\n    int left = 1;\n    int right = n - 2;\n    // lMax : Maximum in subarray arr[0..left-1]\n    // rMax : Maximum in subarray arr[right+1..n-1]\n    int lMax = arr[left - 1];\n    int rMax = arr[right + 1];\n    int res = 0;\n    while (left <= right) {\n        // If rMax is smaller, then we can\n        // decide the amount of water for arr[right]\n        if (rMax <= lMax) {\n            // Add the water for arr[right]\n            res += (rMax - arr[right]) > 0 ? (rMax - arr[right]) : 0;\n            // Update right max\n            rMax = rMax > arr[right] ? rMax : arr[right];\n            // Update right pointer as we have\n            // decided the amount of water for this\n            right -= 1;\n        } else {\n            // Add the water for arr[left]\n            res += (lMax - arr[left]) > 0 ? (lMax - arr[left]) : 0;\n            // Update left max\n            lMax = lMax > arr[left] ? lMax : arr[left];\n            // Update left pointer as we have decided water for this\n            left += 1;\n        }\n    }\n    return res;\n}\nint main() {\n    int arr[] = {2, 1, 5, 3, 1, 0, 4};\n    int n = sizeof(arr) / sizeof(arr[0]);\n    printf(\"%d\\n\", maxWater(arr, n));\n    return 0;\n}",
+    "code_without_comments": "#include <stdio.h>\nint maxWater(int arr[], int n) {\n    int left = 1;\n    int right = n - 2;\n\n\n    int lMax = arr[left - 1];\n    int rMax = arr[right + 1];\n    int res = 0;\n    while (left <= right) {\n\n\n        if (rMax <= lMax) {\n\n            res += (rMax - arr[right]) > 0 ? (rMax - arr[right]) : 0;\n\n            rMax = rMax > arr[right] ? rMax : arr[right];\n\n\n            right -= 1;\n        } else {\n\n            res += (lMax - arr[left]) > 0 ? (lMax - arr[left]) : 0;\n\n            lMax = lMax > arr[left] ? lMax : arr[left];\n\n            left += 1;\n        }\n    }\n    return res;\n}\nint main() {\n    int arr[] = {2, 1, 5, 3, 1, 0, 4};\n    int n = sizeof(arr) / sizeof(arr[0]);\n    printf(\"%d\\n\", maxWater(arr, n));\n    return 0;\n}",
+    "has_comments": true,
+    "language": "cpp",
+    "source_url": "https://www.geeksforgeeks.org/trapping-rain-water/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "def maxWater(arr):\n    left = 1\n    right = len(arr) - 2\n    # lMax : Maximum in subarray arr[0..left-1]\n    # rMax : Maximum in subarray arr[right+1..n-1]\n    lMax = arr[left - 1]\n    rMax = arr[right + 1]\n    res = 0\n    while left <= right:\n        # If rMax is smaller, then we can decide the\n        # amount of water for arr[right]\n        if rMax <= lMax:\n            # Add the water for arr[right]\n            res += max(0, rMax - arr[right])\n            # Update right max\n            rMax = max(rMax, arr[right])\n            # Update right pointer as we have decided\n            # the amount of water for this\n            right -= 1\n        else:\n            # Add the water for arr[left]\n            res += max(0, lMax - arr[left])\n            # Update left max\n            lMax = max(lMax, arr[left])\n            # Update left pointer as we have decided\n            # the amount of water for this\n            left += 1\n    return res\nif __name__ == \"__main__\":\n    arr = [2, 1, 5, 3, 1, 0, 4]\n    print(maxWater(arr))",
+    "code_without_comments": "def maxWater(arr):\n    left = 1\n    right = len(arr) - 2\n\n\n    lMax = arr[left - 1]\n    rMax = arr[right + 1]\n    res = 0\n    while left <= right:\n\n\n        if rMax <= lMax:\n\n            res += max(0, rMax - arr[right])\n\n            rMax = max(rMax, arr[right])\n\n\n            right -= 1\n        else:\n\n            res += max(0, lMax - arr[left])\n\n            lMax = max(lMax, arr[left])\n\n\n            left += 1\n    return res\nif __name__ == \"__main__\":\n    arr = [2, 1, 5, 3, 1, 0, 4]\n    print(maxWater(arr))",
+    "has_comments": true,
+    "language": "python",
+    "source_url": "https://www.geeksforgeeks.org/trapping-rain-water/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "#include <iostream>\n#include <vector>\n#include <stack>\nusing namespace std;\nint maxWater(vector<int>& arr) {\n    stack<int> st;\n    int res = 0;\n    for (int i = 0; i < arr.size(); i++) {\n        // Pop all items smaller than arr[i]\n        while (!st.empty() && arr[st.top()] < arr[i]) {\n            int pop_height = arr[st.top()];\n            st.pop();\n            if (st.empty())\n                break;\n            // arr[i] is the next greater for the removed item\n            // and new stack top is the previous greater\n            int distance = i - st.top() - 1;\n            // Take the minimum of two heights (next and prev greater)\n            // and find the amount of water that we can fill in all\n            // bars between the two\n            int water = min(arr[st.top()], arr[i]) - pop_height;\n            res += distance * water;\n        }\n        st.push(i);\n    }\n    return res;\n}\nint main() {\n    vector<int> arr = {2, 1, 5, 3, 1, 0, 4};\n    cout << maxWater(arr);\n    return 0;\n}",
+    "code_without_comments": "#include <iostream>\n#include <vector>\n#include <stack>\nusing namespace std;\nint maxWater(vector<int>& arr) {\n    stack<int> st;\n    int res = 0;\n    for (int i = 0; i < arr.size(); i++) {\n\n        while (!st.empty() && arr[st.top()] < arr[i]) {\n            int pop_height = arr[st.top()];\n            st.pop();\n            if (st.empty())\n                break;\n\n\n            int distance = i - st.top() - 1;\n\n\n\n            int water = min(arr[st.top()], arr[i]) - pop_height;\n            res += distance * water;\n        }\n        st.push(i);\n    }\n    return res;\n}\nint main() {\n    vector<int> arr = {2, 1, 5, 3, 1, 0, 4};\n    cout << maxWater(arr);\n    return 0;\n}",
+    "has_comments": true,
+    "language": "cpp",
+    "source_url": "https://www.geeksforgeeks.org/trapping-rain-water/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "#include <stdio.h>\n#include <stdlib.h>\nstruct Stack {\n    int *array;\n    int top;\n    int capacity;\n};\nstruct Stack* createStack(int capacity) {\n    struct Stack* stack = (struct Stack*)malloc(sizeof(struct Stack));\n    stack->capacity = capacity;\n    stack->top = -1;\n    stack->array = (int*)malloc(capacity * sizeof(int));\n    return stack;\n}\n// Stack is full when top is equal to the last index\nint isFull(struct Stack* stack) {\n    return stack->top == stack->capacity - 1;\n}\n// Stack is empty when top is -1\nint isEmpty(struct Stack* stack) {\n    return stack->top == -1;\n}\n// Function to add an item to stack\nvoid push(struct Stack* stack, int item) {\n    if (isFull(stack))\n        return;\n    stack->array[++stack->top] = item;\n}\n// Function to remove an item from stack\nint pop(struct Stack* stack) {\n    if (isEmpty(stack))\n        return -1;\n    return stack->array[stack->top--];\n}\n// Function to return the top from the stack without popping\nint top(struct Stack* stack) {\n    return stack->array[stack->top];\n}\nint maxWater(int* arr, int n) {\n    struct Stack* st = createStack(n);\n    int res = 0;\n    for (int i = 0; i < n; i++) {\n        // Pop all items smaller than arr[i]\n        while (!isEmpty(st) && arr[top(st)] < arr[i]) {\n            int pop_height = arr[pop(st)];\n            if (isEmpty(st))\n                break;\n            // arr[i] is the next greater for the removed item\n            // and new stack top is the previous greater\n            int distance = i - top(st) - 1;\n            // Take the minimum of two heights (next and prev greater)\n            int water = (arr[top(st)] < arr[i]) ? arr[top(st)] : arr[i];\n            // Find the amount of water\n            water -= pop_height;\n            res += distance * water;\n        }\n        push(st, i);\n    }\n    free(st->array);\n    free(st);\n    return res;\n}\nint main() {\n    int arr[] = {2, 1, 5, 3, 1, 0, 4};\n    int n = sizeof(arr) / sizeof(arr[0]);\n    printf(\"%d\\n\", maxWater(arr, n));\n    return 0;\n}",
+    "code_without_comments": "#include <stdio.h>\n#include <stdlib.h>\nstruct Stack {\n    int *array;\n    int top;\n    int capacity;\n};\nstruct Stack* createStack(int capacity) {\n    struct Stack* stack = (struct Stack*)malloc(sizeof(struct Stack));\n    stack->capacity = capacity;\n    stack->top = -1;\n    stack->array = (int*)malloc(capacity * sizeof(int));\n    return stack;\n}\n\nint isFull(struct Stack* stack) {\n    return stack->top == stack->capacity - 1;\n}\n\nint isEmpty(struct Stack* stack) {\n    return stack->top == -1;\n}\n\nvoid push(struct Stack* stack, int item) {\n    if (isFull(stack))\n        return;\n    stack->array[++stack->top] = item;\n}\n\nint pop(struct Stack* stack) {\n    if (isEmpty(stack))\n        return -1;\n    return stack->array[stack->top--];\n}\n\nint top(struct Stack* stack) {\n    return stack->array[stack->top];\n}\nint maxWater(int* arr, int n) {\n    struct Stack* st = createStack(n);\n    int res = 0;\n    for (int i = 0; i < n; i++) {\n\n        while (!isEmpty(st) && arr[top(st)] < arr[i]) {\n            int pop_height = arr[pop(st)];\n            if (isEmpty(st))\n                break;\n\n\n            int distance = i - top(st) - 1;\n\n            int water = (arr[top(st)] < arr[i]) ? arr[top(st)] : arr[i];\n\n            water -= pop_height;\n            res += distance * water;\n        }\n        push(st, i);\n    }\n    free(st->array);\n    free(st);\n    return res;\n}\nint main() {\n    int arr[] = {2, 1, 5, 3, 1, 0, 4};\n    int n = sizeof(arr) / sizeof(arr[0]);\n    printf(\"%d\\n\", maxWater(arr, n));\n    return 0;\n}",
+    "has_comments": true,
+    "language": "cpp",
+    "source_url": "https://www.geeksforgeeks.org/trapping-rain-water/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "def maxWater(arr):\n    st = []\n    res = 0\n    for i in range(len(arr)):\n        # Pop all items smaller than arr[i]\n        while st and arr[st[-1]] < arr[i]:\n            pop_height = arr[st.pop()]\n            if not st:\n                break\n            # arr[i] is the next greater for the removed item\n            # and new stack top is the previous greater\n            distance = i - st[-1] - 1\n            # Take the minimum of two heights (next and prev greater)\n            water = min(arr[st[-1]], arr[i])\n            # Find the amount of water\n            water -= pop_height\n            res += distance * water\n        st.append(i)\n    return res\nif __name__ == \"__main__\":\n\tarr = [2, 1, 5, 3, 1, 0, 4]\n\tprint(maxWater(arr))",
+    "code_without_comments": "def maxWater(arr):\n    st = []\n    res = 0\n    for i in range(len(arr)):\n\n        while st and arr[st[-1]] < arr[i]:\n            pop_height = arr[st.pop()]\n            if not st:\n                break\n\n\n            distance = i - st[-1] - 1\n\n            water = min(arr[st[-1]], arr[i])\n\n            water -= pop_height\n            res += distance * water\n        st.append(i)\n    return res\nif __name__ == \"__main__\":\n\tarr = [2, 1, 5, 3, 1, 0, 4]\n\tprint(maxWater(arr))",
+    "has_comments": true,
+    "language": "python",
+    "source_url": "https://www.geeksforgeeks.org/trapping-rain-water/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "// C++ program to solve chocolate distribution\n// problem using Sliding Window\n#include <iostream>\n#include <vector>\n#include <algorithm>\n#include <limits.h>\nusing namespace std;\nint findMinDiff(vector<int> &arr, int m) {\n\tint n = arr.size();\n    // Sort the given packets\n    sort(arr.begin(), arr.end());\n    int minDiff = INT_MAX;\n    for (int i = 0; i + m - 1 < n; i++) {\n      \t// calculate difference of current window\n        int diff = arr[i + m - 1] - arr[i];\n      \t// if current difference is smaller\n      \t// then update the minimum difference\n        if (diff < minDiff)\n        \tminDiff = diff;\n    }\n    return minDiff;\n}\nint main() {\n    vector<int> arr = {7, 3, 2, 4, 9, 12, 56};\n    int m = 3;\n    cout << findMinDiff(arr, m);\n    return 0;\n}",
+    "code_without_comments": "\n\n#include <iostream>\n#include <vector>\n#include <algorithm>\n#include <limits.h>\nusing namespace std;\nint findMinDiff(vector<int> &arr, int m) {\n\tint n = arr.size();\n\n    sort(arr.begin(), arr.end());\n    int minDiff = INT_MAX;\n    for (int i = 0; i + m - 1 < n; i++) {\n\n        int diff = arr[i + m - 1] - arr[i];\n\n\n        if (diff < minDiff)\n        \tminDiff = diff;\n    }\n    return minDiff;\n}\nint main() {\n    vector<int> arr = {7, 3, 2, 4, 9, 12, 56};\n    int m = 3;\n    cout << findMinDiff(arr, m);\n    return 0;\n}",
+    "has_comments": true,
+    "language": "cpp",
+    "source_url": "https://www.geeksforgeeks.org/chocolate-distribution-problem/",
+    "complexity_weight": 1.0
+  },
+  {
+    "code_with_comments": "// C program to solve chocolate distribution\n// problem using Sliding Window\n#include <stdio.h>\n#include <limits.h>\n// Function to compare two elements for qsort\nint compare(const void* a, const void* b) {\n    return (*(int*)a - *(int*)b);\n}\nint findMinDiff(int* arr, int n, int m) {\n    // Sort the given packets\n    qsort(arr, n, sizeof(int), compare);\n    int minDiff = INT_MAX;\n    for (int i = 0; i + m - 1 < n; i++) {\n        // calculate difference of current window\n        int diff = arr[i + m - 1] - arr[i];\n        // if current difference is smaller\n        // then update the minimum difference\n        if (diff < minDiff)\n            minDiff = diff;\n    }\n    return minDiff;\n}\nint main() {\n    int arr[] = {7, 3, 2, 4, 9, 12, 56};\n    int n = sizeof(arr) / sizeof(arr[0]);\n    int m = 3;\n    printf(\"%d\\n\", findMinDiff(arr, n, m));\n    return 0;\n}",
+    "code_without_comments": "\n\n#include <stdio.h>\n#include <limits.h>\n\nint compare(const void* a, const void* b) {\n    return (*(int*)a - *(int*)b);\n}\nint findMinDiff(int* arr, int n, int m) {\n\n    qsort(arr, n, sizeof(int), compare);\n    int minDiff = INT_MAX;\n    for (int i = 0; i + m - 1 < n; i++) {\n\n        int diff = arr[i + m - 1] - arr[i];\n\n\n        if (diff < minDiff)\n            minDiff = diff;\n    }\n    return minDiff;\n}\nint main() {\n    int arr[] = {7, 3, 2, 4, 9, 12, 56};\n    int n = sizeof(arr) / sizeof(arr[0]);\n    int m = 3;\n    printf(\"%d\\n\", findMinDiff(arr, n, m));\n    return 0;\n}",
+    "has_comments": true,
+    "language": "cpp",
+    "source_url": "https://www.geeksforgeeks.org/chocolate-distribution-problem/",
+    "complexity_weight": 1.0
+  }
+]

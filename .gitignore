@@ -13,3 +13,5 @@ __pycache__/
 Thumbs.db
 
 # #model weights (too large for GitHub)
+code-commenter-lora/
+code-commenter-output/
