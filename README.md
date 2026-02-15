@@ -126,6 +126,7 @@ This makes it possible to train on a **free Google Colab T4 GPU** (15GB VRAM) in
 
 ## 🚀 How to Run
 
+
 ### Prerequisites
 
 - Python 3.10+
@@ -189,6 +190,9 @@ Open **http://localhost:7860** in your browser.
 ```bash
 python inference.py
 ```
+## 🌐 Live Demo
+
+**Try it now:** [https://huggingface.co/spaces/kks25/code-commenter](https://huggingface.co/spaces/kks25/code-commenter)
 
 ---
 
