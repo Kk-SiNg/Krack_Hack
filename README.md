@@ -253,6 +253,7 @@ python inference.py
 ---
 
 ## 📸 Demo
+[Link to Demo deployed on colab](https://1743ae9706ba60246a.gradio.live)
 
 ### Input (Raw C++ Code)
 ```cpp
