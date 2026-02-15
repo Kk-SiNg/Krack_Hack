@@ -2,7 +2,7 @@
 
 An AI-powered tool that **automatically adds meaningful inline comments** to competitive programming code (C++ and Python).
 
-Built by fine-tuning **Qwen2.5-Coder-7B-Instruct** using **LoRA** on curated competitive programming solutions from the [DeepMind Code Contests](https://huggingface.co/datasets/deepmind/code_contests) dataset.
+Built by fine-tuning **Qwen2.5-Coder-7B-Instruct** using **LoRA** on a highly curated, dynamically weighted dataset of algorithmic implementations scraped directly from **GeeksforGeeks**.
 
 **100% local inference — zero API calls to OpenAI, Google, or any external service.**
 
@@ -40,29 +40,32 @@ Competitive programming solutions are notoriously hard to read — they use shor
 
 ### Architecture
 
-```
+```text
 ┌─────────────────────────────────────────────────────────┐
 │                    TRAINING PIPELINE                     │
 ├─────────────────────────────────────────────────────────┤
 │                                                         │
-│  1. DATA COLLECTION                                     │
-│     DeepMind Code Contests dataset (13,328 problems)    │
+│  1. DATA SCRAPING & COLLECTION                          │
+│     Web scrape 120+ Data Structure & Algorithm          │
+│     pages from GeeksforGeeks (DP, Graphs, Trees, etc.)  │
 │     ↓                                                   │
-│  2. SOLUTION EXTRACTION                                 │
-│     Filter C++ & Python solutions (5-40 lines)          │
+│  2. GROUND-TRUTH EXTRACTION                             │
+│     Parse HTML to find natively commented C++ & Python  │
+│     code blocks. Clean raw text & remove HTML junk.     │
 │     ↓                                                   │
-│  3. COMMENT GENERATION                                  │
-│     Qwen2.5-Coder-1.5B via Ollama (local, no API)      │
-│     Input: raw code → Output: code + inline comments    │
+│  3. INPUT-OUTPUT PAIR GENERATION                        │
+│     Use Regex to strip comments from the code.          │
+│     Input: Stripped Code → Output: Original GFG Code    │
 │     ↓                                                   │
-│  4. DATA CLEANING                                       │
-│     Remove bad examples (wrong comment style, rewrites) │
+│  4. COMPLEXITY WEIGHTING & BATCHING                     │
+│     Oversample hard topics to improve model learning:   │
+│     (DP = 3x weight, Graphs = 2x, Sorting = 1x).        │
 │     ↓                                                   │
 │  5. FINE-TUNING                                         │
-│     Base: Qwen2.5-Coder-7B-Instruct (4-bit quantized)  │
+│     Base: Qwen2.5-Coder-7B-Instruct (4-bit quantized)   │
 │     Method: LoRA (r=16, alpha=32)                       │
 │     Framework: Unsloth + TRL + HuggingFace              │
-│     Hardware: Google Colab T4 GPU (free tier)            │
+│     Hardware: Google Colab T4 GPU (free tier)           │
 │                                                         │
 ├─────────────────────────────────────────────────────────┤
 │                   INFERENCE PIPELINE                     │
@@ -77,7 +80,6 @@ Competitive programming solutions are notoriously hard to read — they use shor
 │  Decode and return commented code                       │
 │                                                         │
 └─────────────────────────────────────────────────────────┘
-```
 
 ### Model Details
 
