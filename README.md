@@ -266,8 +266,8 @@ code-commenter/
 | **Base Model** | Qwen2.5-Coder-7B-Instruct |
 | **Fine-tuning** | LoRA + Unsloth + TRL |
 | **Quantization** | 4-bit NF4 (bitsandbytes) |
-| **Dataset** | DeepMind Code Contests |
-| **Data Generation** | Ollama (local LLM inference) |
+| **Dataset** | GFG |
+| **Data Generation** | Scraping GFG Dataset |
 | **Web UI** | Gradio |
 | **Training Hardware** | Google Colab T4 GPU (free) |
 | **Languages** | Python |
