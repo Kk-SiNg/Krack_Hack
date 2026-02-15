@@ -20,8 +20,7 @@ Built by fine-tuning **Qwen2.5-Coder-7B-Instruct** using **LoRA** on a highly cu
 
 ## 🌐 Live Demo
 
-*Coming soon*
-
+[open this link to colab deployment](https://a66f929da09d3d4154.gradio.live/)
 ---
 
 ## 🎯 Problem Statement
