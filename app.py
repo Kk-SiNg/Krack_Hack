@@ -77,10 +77,10 @@ with gr.Blocks(
 
     **Paste your competitive programming code** and get instant inline comments.
 
-    Fine-tuned on competitive programming solutions from the
-    DeepMind Code Contests dataset. Supports **C++** and **Python**.
+    Fine-tuned on naturally commented code scraped from
+    **122+ GeeksforGeeks** algorithm pages. Supports **C++** and **Python**.
 
-    *Running on CPU — expect ~10-20 seconds per prediction.*
+    *Running on CPU — expect ~30-60 seconds per prediction. Much faster on GPU.*
     """)
 
     with gr.Row():
@@ -110,10 +110,10 @@ with gr.Blocks(
 
     gr.Markdown("""
     ---
-    **Tech Stack:** Qwen2.5-Coder | LoRA Fine-tuning | Unsloth | Gradio
+    **Tech Stack:** Qwen2.5-Coder-7B-Instruct | LoRA Fine-tuning | Unsloth | Gradio
 
-    Built by **thestark369** |
-    [GitHub](https://github.com/thestark369/code-commenter)
+    Built by **Kk-SiNg** |
+    [GitHub](https://github.com/Kk-SiNg/Krack_Hack)
     """)
 
 if __name__ == "__main__":

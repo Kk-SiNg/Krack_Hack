@@ -12,6 +12,5 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
-# #model weights (too large for GitHub)
+#tarined weights
 code-commenter-lora/
-code-commenter-output/

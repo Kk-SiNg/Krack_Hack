@@ -1,25 +1,52 @@
+import os
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
+from peft import PeftModel
+
 
 class CodeCommenter:
-    def __init__(self):
-        """Load model for CPU inference."""
-        # Use the small model for CPU — fast enough for demos
-        MODEL_NAME = "Qwen/Qwen2.5-Coder-1.5B-Instruct"
+    def __init__(self, lora_path: str = None):
+        """Load the fine-tuned 7B model with LoRA adapter for inference."""
 
-        print("Loading model... (first time downloads ~3GB, then cached)")
-        print("Device: CPU")
+        BASE_MODEL = "Qwen/Qwen2.5-Coder-7B-Instruct"
+
+        # Resolve LoRA adapter path: local folder > HuggingFace Hub
+        if lora_path is None:
+            if os.path.isdir("code-commenter-lora"):
+                lora_path = "code-commenter-lora"
+            else:
+                lora_path = "kks25/code-commenter-lora"  # auto-download from HF Hub
+
+        # Auto-detect device
+        if torch.cuda.is_available():
+            device_map = "auto"
+            dtype = torch.float16
+            device_label = f"GPU ({torch.cuda.get_device_name(0)})"
+        else:
+            device_map = "cpu"
+            dtype = torch.float32
+            device_label = "CPU"
+
+        print(f"Loading base model: {BASE_MODEL}")
+        print(f"LoRA adapter: {lora_path}")
+        print(f"Device: {device_label}")
 
         self.tokenizer = AutoTokenizer.from_pretrained(
-            MODEL_NAME,
-            trust_remote_code=True
-        )
-        self.model = AutoModelForCausalLM.from_pretrained(
-            MODEL_NAME,
-            device_map="cpu",
-            torch_dtype=torch.float32,
+            BASE_MODEL,
             trust_remote_code=True,
         )
+
+        base_model = AutoModelForCausalLM.from_pretrained(
+            BASE_MODEL,
+            device_map=device_map,
+            torch_dtype=dtype,
+            trust_remote_code=True,
+        )
+
+        # Apply LoRA adapter and merge weights for faster inference
+        print("Applying LoRA adapter...")
+        self.model = PeftModel.from_pretrained(base_model, lora_path)
+        self.model = self.model.merge_and_unload()
         self.model.eval()
 
         if self.tokenizer.pad_token is None:
@@ -42,6 +69,7 @@ class CodeCommenter:
         )
 
         inputs = self.tokenizer(prompt, return_tensors="pt")
+        inputs = {k: v.to(self.model.device) for k, v in inputs.items()}
 
         with torch.no_grad():
             outputs = self.model.generate(
@@ -55,8 +83,8 @@ class CodeCommenter:
             )
 
         result = self.tokenizer.decode(
-            outputs[0][inputs.input_ids.shape[1]:],
-            skip_special_tokens=True
+            outputs[0][inputs["input_ids"].shape[1]:],
+            skip_special_tokens=True,
         )
 
         return result.strip()
