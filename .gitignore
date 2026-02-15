@@ -14,3 +14,6 @@ Thumbs.db
 
 #tarined weights
 code-commenter-lora/
+
+#training notebook
+training_notebook.ipynb
