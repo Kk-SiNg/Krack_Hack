@@ -83,7 +83,7 @@ Competitive programming solutions are notoriously hard to read — they use shor
 │     ↓                                                   │
 │  Tokenize with ChatML format (<|im_start|> tags)        │
 │     ↓                                                   │
-│  Load base 7B model + apply & merge LoRA adapter        │
+│  Load base 7B model (4-bit) + apply LoRA adapter        │
 │     ↓                                                   │
 │  Generate with fine-tuned model (temperature=0.2)       │
 │     ↓                                                   │
@@ -140,18 +140,50 @@ This makes it possible to train on a **free Google Colab T4 GPU** (15GB VRAM) ef
 
 ## 🚀 How to Run
 
-### Option A: Deploy on Google Colab (Recommended — Free GPU)
+### Option A: Deploy on Google Colab (Recommended — Free T4 GPU)
 
-1. Open [Google Colab](https://colab.research.google.com/)
-2. Change runtime to **T4 GPU**: `Runtime` → `Change runtime type` → `T4 GPU`
-3. **Cell 1** — Install dependencies:
-   ```bash
-   !pip install -q gradio transformers peft accelerate bitsandbytes huggingface_hub torch
-   ```
-4. **Cell 2** — Paste and run the deployment code from [`app.py`](app.py)
-5. Gradio will print a **public URL** (`https://xxxxx.gradio.live`) — share it with anyone!
+This is the easiest way to run the model. No local setup needed.
 
-> LoRA weights are auto-downloaded from HuggingFace Hub. No manual download needed.
+**Step 1:** Open [Google Colab](https://colab.research.google.com/) and create a new notebook.
+
+**Step 2:** Change runtime to GPU: `Runtime` → `Change runtime type` → **T4 GPU**
+
+**Step 3:** Run the following cells in order:
+
+**Cell 1 — Install dependencies:**
+```python
+!pip install -q gradio transformers peft accelerate bitsandbytes huggingface_hub
+```
+
+**Cell 2 — Clear GPU memory** (run this if you restart or get VRAM errors):
+```python
+import torch
+import gc
+
+gc.collect()
+torch.cuda.empty_cache()
+
+print(f"GPU: {torch.cuda.get_device_name(0)}")
+print(f"Free VRAM: {torch.cuda.mem_get_info()[0] / 1024**3:.1f} GB")
+print(f"Total VRAM: {torch.cuda.mem_get_info()[1] / 1024**3:.1f} GB")
+```
+
+**Cell 3 — Load model and launch app:**
+Copy the contents of [`colab_cell3_deploy.py`](colab_cell3_deploy.py) and run it.
+
+**Step 4:** Wait ~2-3 minutes for the model to download and load. You'll see:
+```
+✅ Model ready!
+Running on public URL: https://xxxxx.gradio.live
+```
+
+**Step 5:** Share the `gradio.live` link — anyone can use it!
+
+> **Note:** The Colab session disconnects after ~90 minutes of inactivity. Re-run the cells to get a new public URL.
+
+> The Colab cell files are available in this repo: [`colab_cell1_install.py`](colab_cell1_install.py), [`colab_cell2_clear_gpu.py`](colab_cell2_clear_gpu.py), [`colab_cell3_deploy.py`](colab_cell3_deploy.py)
+
+---
 
 ### Option B: Run Locally
 
@@ -260,8 +292,11 @@ int main() {  // main function
 
 ```
 Krack_Hack/
-├── app.py                        # Gradio web interface
-├── inference.py                  # Model loading (7B + LoRA) and prediction
+├── app.py                        # Gradio web interface (local)
+├── inference.py                  # Model loading (7B + LoRA) and prediction (local)
+├── colab_cell1_install.py        # Colab deployment — install dependencies
+├── colab_cell2_clear_gpu.py      # Colab deployment — clear GPU memory
+├── colab_cell3_deploy.py         # Colab deployment — load model & launch app
 ├── scrape_gfg.py                 # BeautifulSoup + Cloudscraper — scrapes GFG for training data
 ├── upload_model.py               # Upload LoRA weights to HuggingFace Hub
 ├── requirements.txt              # Python dependencies
@@ -274,8 +309,11 @@ Krack_Hack/
 
 | File | Purpose |
 |---|---|
-| `app.py` | Gradio web app — paste code, get comments |
+| `app.py` | Gradio web app for local deployment |
 | `inference.py` | Loads Qwen2.5-Coder-7B-Instruct + LoRA adapter, runs generation |
+| `colab_cell1_install.py` | Colab Cell 1 — pip install dependencies |
+| `colab_cell2_clear_gpu.py` | Colab Cell 2 — clear GPU VRAM |
+| `colab_cell3_deploy.py` | Colab Cell 3 — full model loading + Gradio app launch |
 | `scrape_gfg.py` | Scrapes naturally commented code from 122+ GFG algorithm pages |
 | `upload_model.py` | Uploads LoRA weights to HuggingFace Hub |
 | `dataset_batches/` | The final scraped GFG dataset used for training |
