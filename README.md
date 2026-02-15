@@ -12,8 +12,6 @@ Built by fine-tuning **Qwen2.5-Coder-7B-Instruct** using **LoRA** on a highly cu
 
 **Google Drive:** [Download Model Weights](https://drive.google.com/drive/folders/10OUfszSL4iYtnNAbYw4Z0VMySEryMO92?usp=sharing)
 
-> Replace the above link with your actual Google Drive sharing link.
-
 ---
 
 ## 🎯 Problem Statement
@@ -42,7 +40,7 @@ Competitive programming solutions are notoriously hard to read — they use shor
 
 ```text
 ┌─────────────────────────────────────────────────────────┐
-│                    TRAINING PIPELINE                     │
+│                    TRAINING PIPELINE                    │
 ├─────────────────────────────────────────────────────────┤
 │                                                         │
 │  1. DATA SCRAPING & COLLECTION                          │
@@ -68,7 +66,7 @@ Competitive programming solutions are notoriously hard to read — they use shor
 │     Hardware: Google Colab T4 GPU (free tier)           │
 │                                                         │
 ├─────────────────────────────────────────────────────────┤
-│                   INFERENCE PIPELINE                     │
+│                   INFERENCE PIPELINE                    │
 ├─────────────────────────────────────────────────────────┤
 │                                                         │
 │  User pastes code                                       │
@@ -81,25 +79,6 @@ Competitive programming solutions are notoriously hard to read — they use shor
 │                                                         │
 └─────────────────────────────────────────────────────────┘
 
-### Model Details
-
-| Parameter | Value |
-|---|---|
-| **Base Model** | [Qwen2.5-Coder-7B-Instruct](https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct) |
-| **Quantization** | 4-bit NF4 (bitsandbytes) |
-| **Fine-tuning Method** | LoRA (Low-Rank Adaptation) |
-| **LoRA Rank (r)** | 16 |
-| **LoRA Alpha** | 32 |
-| **Target Modules** | q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj |
-| **Trainable Parameters** | ~40M / 7.6B total (0.53%) |
-| **Training Examples** | ~120 curated pairs |
-| **Epochs** | 8 |
-| **Batch Size** | 1 (gradient accumulation: 8, effective: 8) |
-| **Learning Rate** | 2e-4 (cosine schedule) |
-| **Optimizer** | AdamW 8-bit |
-| **Max Sequence Length** | 768 tokens |
-| **Training Time** | ~10 minutes on T4 GPU |
-| **Training Framework** | Unsloth + TRL + HuggingFace Transformers |
 
 ### Dataset
 
@@ -112,6 +91,7 @@ Competitive programming solutions are notoriously hard to read — they use shor
 | **Comment Generation** | Qwen2.5-Coder-1.5B via Ollama (100% local) |
 | **Cleaning** | Removed wrong comment styles, code rewrites, empty outputs |
 | **Final Dataset** | ~120 high-quality input-output pairs |
+```
 
 ### Why LoRA?
 
