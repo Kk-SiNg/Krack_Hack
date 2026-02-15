@@ -19,8 +19,7 @@ Built by fine-tuning **Qwen2.5-Coder-7B-Instruct** using **LoRA** on a highly cu
 ---
 
 ## 🌐 Live Demo
-
-*Coming soon*
+[Link To Demo deployed on colab](https://1743ae9706ba60246a.gradio.live)
 
 ---
 
@@ -251,9 +250,6 @@ python inference.py
 ```
 
 ---
-
-## 📸 Demo
-[Link to Demo deployed on colab](https://1743ae9706ba60246a.gradio.live)
 
 ### Input (Raw C++ Code)
 ```cpp
